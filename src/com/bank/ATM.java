@@ -7,7 +7,7 @@ public class ATM {
 	public String location;
 	public String managedBy;
 	private Bank bank;
-	private List<ATMTransaction> listAtmTransactions;
+	private List<Transaction> listAtmTransactions;
 	
 	public ATM () {
 		
