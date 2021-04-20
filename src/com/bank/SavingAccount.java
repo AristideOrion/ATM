@@ -4,7 +4,9 @@ public class SavingAccount extends Account {
 
 	public Integer accountNo;
 
-	public SavingAccount() {
+	
+	public SavingAccount(String string, User newUser, Bank bank) {
+		super(string,newUser,bank);
 	}
 
 	public void debit() {

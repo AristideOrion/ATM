@@ -2,7 +2,7 @@ package com.bank;
 
 import java.util.ArrayList;
 
-public abstract class Account {
+public  class Account {
 	
 	public String type;
 	
@@ -44,6 +44,41 @@ public abstract class Account {
 	public String getUuid() {
 		// TODO Auto-generated method stub
 		return this.uuid;
+	}
+	public Object getSummaryLine() {
+		
+		//get the account 's balance
+		double balance =this.getBalance();
+		
+		if(balance>=0)
+		{
+			return String.format("Xs : $%.0.2F", this.uuid, balance, this.name);
+		}else
+			return String.format("Xs : $(%.02f) : Xs", this.uuid,balance,this.name);
+	}
+	
+	
+	private double getBalance() {
+		double balance=0;
+		for(Transaction t:this.listTransactions)
+		{
+			balance +=t.getAmount();
+		}
+		
+		return balance;
+		
+	}
+	
+	/**
+	 * Print transaction history
+	 */
+	public void printTransHistory() {
+		System.out.printf("\nTransaction history for account %s\n",this.uuid);
+		for(int i=this.listTransactions.size()-1;i>=0;i--)
+		{
+			System.out.printf(this.listTransactions.get(i).getSummaryLine());
+		}
+		System.out.println();
 	}
 
 }

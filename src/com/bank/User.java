@@ -57,7 +57,45 @@ public class User {
 	}
 
 	public String getUuid() {
-		// TODO Auto-generated method stub
 		return this.uuid;
+	}
+
+	
+	/**
+	 * Validate pin code 
+	 * @param pin
+	 * @return true of false
+	 */
+	public boolean validatePin(String pin) {
+		
+		MessageDigest md;
+		try {
+			md = MessageDigest.getInstance("MD5");
+			return MessageDigest.isEqual(md.digest(pin.getBytes()), this.pinHash);
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+			System.exit(1);
+		}
+		return false;
+	}
+
+	public void printAccountSummary() {
+			System.out.printf("\n\n%x summary",this.firstname);
+			for(int i=0;i<this.accounts.size(); i++) {
+				System.out.printf("xd) xs\n",this.accounts.get(i).getSummaryLine());
+			}
+	}
+
+	public int numAccounts() {
+		return this.accounts.size();
+	}
+
+	/**
+	 * Print transaction history for a particular account
+	 * @param acctIdx the index of the account to use
+	 */
+	public void printAcctTransactionHistory(int acctIdx) {
+		this.accounts.get(acctIdx).printTransHistory();
 	}
 }
