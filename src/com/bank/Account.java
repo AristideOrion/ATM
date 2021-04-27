@@ -42,9 +42,9 @@ public  class Account {
 		
 	}
 	public String getUuid() {
-		// TODO Auto-generated method stub
 		return this.uuid;
 	}
+	
 	public Object getSummaryLine() {
 		
 		//get the account 's balance
@@ -58,14 +58,14 @@ public  class Account {
 	}
 	
 	
-	private double getBalance() {
-		double balance=0;
+	public double getBalance() {
+		double balanceVariable=0;
 		for(Transaction t:this.listTransactions)
 		{
-			balance +=t.getAmount();
+			balanceVariable +=t.getAmount();
 		}
 		
-		return balance;
+		return balanceVariable;
 		
 	}
 	
@@ -79,6 +79,16 @@ public  class Account {
 			System.out.printf(this.listTransactions.get(i).getSummaryLine());
 		}
 		System.out.println();
+	}
+	
+	/**
+	 * Add a new transaction
+	 * @param amount
+	 * @param memo
+	 */
+	public void addTransaction(double amount, String memo) {
+		Transaction newTransaction=new Transaction(amount,memo,this);
+		this.listTransactions.add(newTransaction);
 	}
 
 }

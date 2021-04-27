@@ -73,7 +73,6 @@ public class User {
 			md = MessageDigest.getInstance("MD5");
 			return MessageDigest.isEqual(md.digest(pin.getBytes()), this.pinHash);
 		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 			System.exit(1);
 		}
@@ -97,5 +96,30 @@ public class User {
 	 */
 	public void printAcctTransactionHistory(int acctIdx) {
 		this.accounts.get(acctIdx).printTransHistory();
+	}
+
+	/*
+	 * Print transaction history for a particular account
+	 * @param acctIdx the index of the account to use
+	 */
+	public void printTransactionHistory(int theAcct) {
+		this.accounts.get(theAcct).printTransHistory();
+	}
+
+	public double getAcctBalance(int fromAcct) {
+		return this.accounts.get(fromAcct).getBalance();
+	}
+
+	public Object getAcctUUID(int toAcct) {
+		return this.accounts.get(toAcct).getUuid();
+	}
+	/**
+	 * Add a transaction to a particular account
+	 * @param fromAcct
+	 * @param d
+	 * @param format
+	 */
+	public void addAccTransaction(int fromAcct, double amount, String memo) {
+		this.accounts.get(fromAcct).addTransaction(amount,memo);
 	}
 }
